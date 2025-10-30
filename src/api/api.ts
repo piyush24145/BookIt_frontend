@@ -1,0 +1,13 @@
+import axios from "axios";
+const BASE = "http://localhost:5000/api";
+export const api = axios.create({
+  baseURL: BASE,
+  headers: {
+    "Content-Type": "application/json",
+  },
+  withCredentials: false,
+});
+export const getExperiences = () => api.get("/experiences");
+export const getExperience = (id: string) => api.get(`/experiences/${id}`);
+export const createBooking = (payload: any) => api.post("/bookings", payload);
+export const validatePromo = (code: string) => api.post("/promo/validate", { code });
