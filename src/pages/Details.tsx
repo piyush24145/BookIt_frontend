@@ -30,8 +30,6 @@ const Details: React.FC = () => {
   const handleSelectDate = (d: string) =>
     setSelectedDate(selectedDate === d ? null : d);
 
-  const handleSelectTime = (t: string) =>
-    setSelectedTime(selectedTime === t ? null : t);
 
   const subtotal = exp.price * qty;
   const tax = Math.round(subtotal * 0.06);
