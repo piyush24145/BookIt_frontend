@@ -1,18 +1,23 @@
 import axios from "axios";
 
-const BASE = import.meta.env.VITE_API_URL;
-
-export const api = axios.create({
-  baseURL: BASE,
+const API = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:8080/api",
   headers: {
     "Content-Type": "application/json",
   },
-  withCredentials: false,
 });
 
-// ✅ Correct routes:
-export const getExperiences = () => api.get("/experiences");
-export const getExperience = (id: string) => api.get(`/experiences/${id}`);
-export const createBooking = (payload: any) => api.post("/bookings", payload);
+// ✅ Get all experiences
+export const getExperiences = () => API.get("/experiences");
+
+// ✅ Get single experience
+export const getExperience = (id: string) => API.get(`/experiences/${id}`);
+
+// ✅ Create booking
+export const createBooking = (data: any) => API.post("/bookings", data);
+
+// ✅ Validate promo (👉 ye missing tha)
 export const validatePromo = (code: string) =>
-  api.post("/promo/validate", { code });
+  API.post("/promo/validate", { code });
+
+export default API;
